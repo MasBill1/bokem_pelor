@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nembak Cewek</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: linear-gradient(to top left, #ffcccc, #ffe6e6);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .container {
+      text-align: center;
+      background: white;
+      padding: 40px;
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(255, 100, 100, 0.3);
+      animation: fadeIn 2s ease-in-out;
+      max-width: 400px;
+    }
+
+    .typewriter {
+      display: inline-block;
+      overflow: hidden;
+      border-right: 2px solid pink;
+      white-space: nowrap;
+      animation: typing 4s steps(40, end), blink 0.7s step-end infinite;
+      font-size: 20px;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent }
+      50% { border-color: pink }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    button {
+      margin: 15px 10px 0;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 15px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .yes-btn {
+      background-color: #ff4d88;
+      color: white;
+    }
+
+    .no-btn {
+      background-color: #ddd;
+      color: #555;
+    }
+
+    .no-btn:hover {
+      transform: translateX(calc(50px - 100px * Math.random()));
+    }
+
+    .heart {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: pink;
+      transform: rotate(45deg);
+      animation: float 6s infinite ease-in;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -7.5px;
+      left: 0;
+    }
+
+    .heart::after {
+      top: 0;
+      left: -7.5px;
+    }
+
+    @keyframes float {
+      0% { bottom: -20px; opacity: 0; }
+      50% { opacity: 1; }
+      100% { bottom: 100%; opacity: 0; transform: rotate(720deg); }
+    }
+
+    .flower {
+      position: absolute;
+      font-size: 24px;
+      animation: flowerFall 4s linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes flowerFall {
+      0% { transform: translateY(-50px) rotate(0deg); opacity: 0; }
+      20% { opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="typewriter">Hai kamu... aku mau bilang sesuatu 😳❤️</div>
+    <div style="margin-top: 20px;">
+      <p style="font-size: 18px;">Maukah kamu jadi pacarku? 🥺</p>
+      <button class="yes-btn" onclick="jawaban()">Iya dong!</button>
+      <button class="no-btn" onmouseover="pindah(this)">Enggak ah</button>
+    </div>
+  </div>
+
+  <script>
+    // Animasi hati latar
+    for (let i = 0; i < 20; i++) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 5 + 3) + 's';
+      document.body.appendChild(heart);
+    }
+
+    function pindah(button) {
+      const x = Math.random() * (window.innerWidth - button.offsetWidth);
+      const y = Math.random() * (window.innerHeight - button.offsetHeight);
+      button.style.position = 'absolute';
+      button.style.left = `${x}px`;
+      button.style.top = `${y}px`;
+    }
+
+    function jawaban() {
+  for (let i = 0; i < 50; i++) {
+    setTimeout(() => {
+      let flower = document.createElement('div');
+      flower.innerText = '🌸';
+      flower.classList.add('flower');
+      flower.style.left = Math.random() * 100 + 'vw';
+      flower.style.fontSize = `${Math.random() * 20 + 20}px`;
+      document.body.appendChild(flower);
+      setTimeout(() => flower.remove(), 4000);
+    }, i * 100);
+  }
+
+  // Pindah ke halaman baru setelah 2 detik
+  setTimeout(() => {
+    window.location.href = "index.html";
+  }, 2000);
+}
+  </script>
+</body>
+</html>
